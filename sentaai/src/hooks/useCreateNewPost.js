@@ -1,7 +1,7 @@
 import axios from "axios";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
+// import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { useState } from "react";
-import { storage } from "../firebase/firebase";
+// import { storage } from "../firebase/firebase";
 import useAuthStore from "../store/authStore";
 import { BASE_URL } from "../utils/request";
 import useShowToast from "./useShowToast";

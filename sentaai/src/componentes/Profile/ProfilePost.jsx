@@ -1,9 +1,9 @@
 import { Avatar, Button, Flex, GridItem, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
 import axios from "axios";
-import { deleteObject, ref } from "firebase/storage";
+// import { deleteObject, ref } from "firebase/storage";
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
-import { storage } from "../../firebase/firebase";
+// import { storage } from "../../firebase/firebase";
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import usePostStore from "../../store/postStore";

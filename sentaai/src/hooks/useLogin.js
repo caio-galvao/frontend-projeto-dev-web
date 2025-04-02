@@ -1,45 +1,39 @@
 import axios from "axios";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/firebase";
+// import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+// import { auth } from "../firebase/firebase";
 import useAuthStore from "../store/authStore";
 import { BASE_URL } from "../utils/request";
 import useShowToast from "./useShowToast";
 
 
 const useLogin = () => {
-
   const showToast = useShowToast();
-  const [signInWithEmailAndPassword, , loading, error] = useSignInWithEmailAndPassword(auth);
-  const loginUser = useAuthStore(state => state.login);
+  const loginUser = useAuthStore((state) => state.login);
 
   const login = async (inputs) => {
-
     if (!inputs.cpf || !inputs.password) {
       return showToast("Erro", "Preencha todos os campos", "error");
     }
 
     try {
+      const response = await axios.post(`${BASE_URL}/auth/login`, {
+        cpf: inputs.cpf,
+        password: inputs.password,
+      });
 
-      const userCred = await signInWithEmailAndPassword(inputs.cpf, inputs.password);
+      const { token } = response.data;
+      localStorage.setItem("auth-token", token);
 
-      if (!userCred || error) {
-        return showToast("Erro", "CPF ou senha incorretos", "error")
-      }
-      if (userCred) {
-        await axios.get(`${BASE_URL}/users_id/${userCred.user.uid}`)
-          .then(response => {
-            localStorage.setItem("user-info", JSON.stringify(response.data.user));
-            loginUser(response.data.user)
-          });
-      }
+      const user = { cpf: inputs.cpf, token };
+      loginUser(user);
 
+      showToast("Sucesso", "Login realizado com sucesso", "success");
     } catch (error) {
-      showToast("Erro", "error")
+      showToast("Erro", error.response?.data?.message || "Erro ao fazer login", "error");
     }
+  };
 
-  }
+  return { login };
+};
 
-  return { loading, error, login }
-}
-
-export default useLogin
+export default useLogin;

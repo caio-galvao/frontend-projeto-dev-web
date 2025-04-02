@@ -1,24 +1,39 @@
-import { useAuthState } from 'react-firebase-hooks/auth'
+// import { useAuthState } from 'react-firebase-hooks/auth'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import PageLayout from './Layouts/PageLayout/PageLayout'
-import { auth } from './firebase/firebase'
+// import { auth } from './firebase/firebase'
 import AuthPage from './pages/AuthPage/AuthPage'
 import HomePage from './pages/HomePage/HomePage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 
-function App() {
+// function App() {
+//   const { user } = useAuthStore();
 
-  const [authUser] = useAuthState(auth);
+//   return (
+//     <PageLayout>
+//       <Routes>
+//         <Route path="/" element={user ? <HomePage /> : <Navigate to="/auth" />} />
+//         <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/" />} />
+//         <Route path="/:username" element={<ProfilePage />} />
+//       </Routes>
+//     </PageLayout>
+//   );
+// }
+
+// export default App
+
+function App() {
+  const user = false;
 
   return (
     <PageLayout>
       <Routes>
-        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/auth" />} />
-        <Route path="/auth" element={!authUser ? <AuthPage /> : <Navigate to="/" />} />
+        <Route path="/" element={user ? <HomePage /> : <Navigate to="/auth" />} />
+        <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/" />} />
         <Route path="/:username" element={<ProfilePage />} />
       </Routes>
     </PageLayout>
-  )
+  );
 }
 
-export default App
+export default App;

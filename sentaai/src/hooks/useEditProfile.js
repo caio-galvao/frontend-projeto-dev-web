@@ -1,8 +1,8 @@
 import axios from "axios";
-import { updateEmail, updatePassword } from "firebase/auth";
-import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+// import { updateEmail, updatePassword } from "firebase/auth";
+// import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { useState } from "react";
-import { auth, storage } from '../firebase/firebase';
+// import { auth, storage } from '../firebase/firebase';
 import useAuthStore from "../store/authStore";
 import useUserProfileStore from "../store/userProfileStore";
 import { BASE_URL } from "../utils/request";

@@ -1,15 +1,17 @@
 import { Box, Flex, Spinner } from "@chakra-ui/react";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import { useLocation } from "react-router-dom";
 import Navbar from "../../componentes/Navbar/Navbar";
 import Sidebar from "../../componentes/Sidebar/Sidebar";
-import { auth } from "../../firebase/firebase";
+// import { auth } from "../../firebase/firebase";
 
 
 const PageLayout = ({ children }) => {
 
   const { pathname } = useLocation();
-	const [user, loading] = useAuthState(auth);
+  // const [user, loading] = useAuthState(auth);
+  const user = null;
+  const loading = false;
 	const canRenderSidebar = pathname !== "/auth" && user;
 	const canRenderNavbar = !user && !loading && pathname !== "/auth";
   
