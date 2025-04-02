@@ -2,6 +2,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Alert, AlertIcon, Button, Input, InputGroup, InputRightElement, Select } from "@chakra-ui/react";
 import { useState } from "react";
 import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPassword";
+import { formatCPF } from "../../utils/formatter";
 
 const Siginup = () => {
 
@@ -15,6 +16,19 @@ const Siginup = () => {
     password:"",
     type: ""
   });
+
+  // const isValidEmail = (email) => {
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   return emailRegex.test(email);
+  // };
+
+  // const handleSignup = () => {
+  //   if (!isValidEmail(inputs.email)) {
+  //     alert("Por favor, insira um e-mail válido.");
+  //     return;
+  //   }
+  //   signup(inputs);
+  // };
 
   return (
     <>
@@ -40,7 +54,9 @@ const Siginup = () => {
         fontSize={14}
         type="text"
         value={inputs.cpf}
-        onChange={(e) => setInputs({...inputs, cpf: e.target.value})}
+        onChange={(e) =>
+          setInputs({ ...inputs, cpf: formatCPF(e.target.value) })
+        }
       />
 
       <InputGroup>
@@ -48,7 +64,7 @@ const Siginup = () => {
           placeholder='Password' _placeholder={{ opacity: 1, color: 'gray.400' }}
           border={"1px solid gray"} borderRadius={4}
           fontSize={14}
-          type={showPassword ? "text" : "Senha"}
+          type={showPassword ? "text" : "password"}
           value={inputs.password}
           onChange={(e) => setInputs({...inputs, password: e.target.value})}
         />
@@ -77,17 +93,6 @@ const Siginup = () => {
         <option value="Admin">Admin</option>
         <option value="Master">Master</option>
       </Select>
-      
-      {/*
-      <Input
-        placeholder='Tipo' _placeholder={{ opacity: 1, color: 'gray.400' }}
-        border={"1px solid gray"} borderRadius={4}
-        fontSize={14}
-        type="text"
-        value={inputs.type}
-        onChange={(e) => setInputs({...inputs, type: e.target.value})}
-      />
-      */}
       
       {error && (
         <Alert status="error" fontSize={13} p={2} borderRadius={4}>

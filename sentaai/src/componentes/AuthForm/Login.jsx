@@ -1,6 +1,7 @@
 import { Alert, AlertIcon, Button, Input } from "@chakra-ui/react"
 import { useState } from "react";
 import useLogin from "../../hooks/useLogin";
+import { formatCPF } from "../../utils/formatter";
 
 const Login = () => {
   const [inputs, setInputs] = useState({ cpf: "", password: "" });
@@ -11,7 +12,7 @@ const Login = () => {
       <Input
         placeholder="CPF"
         value={inputs.cpf}
-        onChange={(e) => setInputs({ ...inputs, cpf: e.target.value })}
+        onChange={(e) => setInputs({ ...inputs, cpf: formatCPF(e.target.value) })}
       />
       <Input
         placeholder="Senha"

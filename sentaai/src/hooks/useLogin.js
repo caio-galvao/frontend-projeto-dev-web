@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 // import { auth } from "../firebase/firebase";
 import useAuthStore from "../store/authStore";
@@ -9,6 +10,7 @@ import useShowToast from "./useShowToast";
 const useLogin = () => {
   const showToast = useShowToast();
   const loginUser = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   const login = async (inputs) => {
     if (!inputs.cpf || !inputs.password) {
@@ -28,6 +30,8 @@ const useLogin = () => {
       loginUser(user);
 
       showToast("Sucesso", "Login realizado com sucesso", "success");
+
+      navigate("/buildings");
     } catch (error) {
       showToast("Erro", error.response?.data?.message || "Erro ao fazer login", "error");
     }
