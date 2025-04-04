@@ -25,7 +25,7 @@ const Sidebar = () => {
   >
     <Flex direction={"column"} gap={10} w="full" height={"full"} >
       <Link to={"/"} as={RouterLink} pl={6} display={{ base: "none", md: "block" }} cursor="point">
-        <Image src="/img/logo-objectify-white.png" cursor={"pointer"} alt="Logo objectify" />
+        <Image src="/img/logo.svg" cursor={"pointer"} alt="Logo" />
       </Link>
       
       <Link to={"/"} as={RouterLink} pl={2} display={{ base: "block", md: "none" }}
@@ -35,7 +35,7 @@ const Sidebar = () => {
         cursor="point"
       >
 
-        <Image src="/img/logo-objectify-white.png" cursor={"pointer"} alt="Logo objectify" />
+        <Image src="/img/logo.svg" cursor={"pointer"} alt="Logo" />
       </Link>
 
       {/* Sidebar items */}

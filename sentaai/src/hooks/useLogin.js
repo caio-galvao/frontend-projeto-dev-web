@@ -31,7 +31,7 @@ const useLogin = () => {
 
       showToast("Sucesso", "Login realizado com sucesso", "success");
 
-      navigate("/buildings");
+      navigate("/profile");
     } catch (error) {
       showToast("Erro", error.response?.data?.message || "Erro ao fazer login", "error");
     }
