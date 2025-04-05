@@ -4,7 +4,7 @@ import PageLayout from './Layouts/PageLayout/PageLayout'
 // import { auth } from './firebase/firebase'
 import AuthPage from './pages/AuthPage/AuthPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
-import a from './pages/a/ProfilePage'
+import BuildingPage from './pages/BuildingPage/BuildingPage'
 
 // function App() {
 //   const { user } = useAuthStore();
@@ -31,6 +31,7 @@ function App() {
         <Route path="/" element={user ? <HomePage /> : <Navigate to="/auth" />} />
         <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/" />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/buildings" element={<BuildingPage />} />
         {/* <Route path="/profile" element={!user ? <HomePage /> : <Navigate to="/profile" />} />
         <Route path="/:username" element={<a />} /> */}
       </Routes>
