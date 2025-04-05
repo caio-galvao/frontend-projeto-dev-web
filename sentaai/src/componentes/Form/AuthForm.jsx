@@ -16,14 +16,6 @@ const AuthForm = () => {
       <VStack spacing={5} marginTop={5}>
 
         {isLogin ? <Login /> : <Siginup />}
-        
-        {/*
-        <Flex alignItems={"center"} justifyContent={"center"} my={4} gap={1} w={"full"}>
-          <Box flex={2} h={"1px"} bg={"gray.400"} />
-          <Text mx={1}>OR</Text>
-          <Box flex={2} h={"1px"} bg={"gray.400"} />
-        </Flex>
-        */}
 
       </VStack>
     </Box>
@@ -31,7 +23,7 @@ const AuthForm = () => {
     <Box padding={5}>
       <Flex alignItems={"center"} justify={"center"}>
         <Box mx={2} fontSize={14}>
-          {isLogin ? "Ainda não tem uma conta?" : "Já tem uma conta?"}
+          {isLogin ? "Ainda não tem uma conta?" : "Alredy register?"}
         </Box>
         <Box onClick={() => setIsLogin(!isLogin)} color={"blue.500"} cursor={"pointer"}>
           {isLogin ? "Criar conta" : "Log in"}

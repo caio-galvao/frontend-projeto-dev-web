@@ -33,7 +33,7 @@ const Siginup = () => {
   return (
     <>
       <Input
-        placeholder='Nome' _placeholder={{ opacity: 1, color: 'gray.400' }}
+        placeholder='Name' _placeholder={{ opacity: 1, color: 'gray.400' }}
         border={"1px solid gray"} borderRadius={4}
         fontSize={14}
         type="text"
@@ -87,7 +87,7 @@ const Siginup = () => {
         }
       >
         <option value="" disabled style={{ color: "gray.400" }}>
-          Tipo
+          Type
         </option>
         <option value="Comum">Comum</option>
         <option value="Admin">Admin</option>

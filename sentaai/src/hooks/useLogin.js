@@ -24,9 +24,14 @@ const useLogin = () => {
       });
 
       const { token } = response.data;
+      console.log("Token:", token);
       localStorage.setItem("auth-token", token);
 
-      const user = { cpf: inputs.cpf, token };
+      const userResponse = await axios.get(`${BASE_URL}/users/${inputs.cpf}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+  
+      const user = userResponse.data;
       loginUser(user);
 
       showToast("Sucesso", "Login realizado com sucesso", "success");
