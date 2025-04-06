@@ -24,7 +24,7 @@ const useDelete = () => {
 
             showToast("Sucesso", "Conta deletada com sucesso", "success");
 
-            navigate("/signup");
+            navigate("/auth");
         } catch (error) {
             showToast("Erro", error.response?.data?.message || "Erro ao deletar conta", "error");
         }

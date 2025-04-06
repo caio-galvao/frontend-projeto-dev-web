@@ -10,6 +10,7 @@ const useAuthStore = create((set) => ({
     localStorage.removeItem("user"); 
     set({ user: null });
   },
+  setUser: (user) => set({ user }),
 }));
 
 export default useAuthStore;
