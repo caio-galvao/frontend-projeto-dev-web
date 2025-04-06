@@ -34,7 +34,6 @@ const useEditProfile = () => {
         },
       });
 
-
       const updatedData = response.data;
 
       localStorage.setItem("user-info", JSON.stringify(updatedData));

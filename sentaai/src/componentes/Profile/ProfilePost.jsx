@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 // import { storage } from "../../firebase/firebase";
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
-import usePostStore from "../../store/postStore";
+import usePostStore from "../../store/buildingStore";
 import useUserProfileStore from "../../store/userProfileStore";
 import { BASE_URL } from "../../utils/request";
 import PostFooter from "../FeedPosts/PostFooter";

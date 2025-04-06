@@ -1,13 +1,13 @@
 import { Box, Flex, Grid, Skeleton, Text, VStack } from "@chakra-ui/react";
-import ProfilePost from "../Profile/ProfilePost";
+import ProfilePost from "./BuildingDisplayed";
 import useGetManagerBuildigs from "../../hooks/useGetManagerBuildings";
 
 const BuildingsList = () => {
 
-  const {isLoading, posts }= useGetManagerBuildigs();
+  const {isLoading, buildings }= useGetManagerBuildigs();
 
-  const noPostFound = !isLoading && posts.length === 0;
-  if(noPostFound) return <NoPostsFound />
+  const noBuildingsFound = !isLoading && ((typeof buildings === "undefined") || (buildings.length === 0));
+  if(noBuildingsFound) return <NoBuildingsFound />
 
   return (
     <Grid
@@ -28,8 +28,8 @@ const BuildingsList = () => {
 
       {!isLoading && (
         <>
-          {posts.map((post) => (
-            <ProfilePost post={post} key={post.id} />
+          {buildings.map((building) => (
+            <ProfilePost post={building} key={building.id} />
           ))}
         </>
       )}
@@ -39,10 +39,10 @@ const BuildingsList = () => {
 
 export default BuildingsList;
 
-const NoPostsFound = () => {
+const NoBuildingsFound = () => {
   return (
     <Flex flexDir={'column'} textAlign={"center"} mx={"auto"}>
-      <Text fontSize={"2x1"}>No Posts Found </Text>
+      <Text fontSize={"2x1"}>No Buildings Found </Text>
     </Flex>
   )
 }
