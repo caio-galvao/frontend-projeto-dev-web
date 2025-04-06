@@ -89,9 +89,9 @@ const Siginup = () => {
         <option value="" disabled style={{ color: "gray.400" }}>
           Type
         </option>
-        <option value="Comum">Comum</option>
-        <option value="Admin">Admin</option>
-        <option value="Master">Master</option>
+        <option value="comum">Comum</option>
+        <option value="admin">Admin</option>
+        <option value="master">Master</option>
       </Select>
       
       {error && (

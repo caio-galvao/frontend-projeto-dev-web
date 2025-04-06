@@ -28,6 +28,8 @@ const useEditProfile = () => {
 
       const token = localStorage.getItem("auth-token");
       console.log("authUser:", updatedUser);
+      console.log(token)
+      console.log(`${BASE_URL}/users/${authUser.id}`)
 
       await axios.put(`${BASE_URL}/users/${authUser.id}`, updatedUser, {
         headers: {

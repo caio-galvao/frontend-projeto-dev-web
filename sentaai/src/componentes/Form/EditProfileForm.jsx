@@ -107,9 +107,9 @@ const EditProfileForm = ({ selectedFile, setSelectedFile }) => {
           <option value="" disabled style={{ color: "gray.400" }}>
             Select user type
           </option>
-          <option value="Comum">Comum</option>
-          <option value="Admin">Admin</option>
-          <option value="Master">Master</option>
+          <option value="comum">Comum</option>
+          <option value="admin">Admin</option>
+          <option value="master">Master</option>
         </Select>
       </FormControl>
 
