@@ -22,16 +22,13 @@ const useEditProfile = () => {
         ...authUser,
         name: inputs.name || authUser.name,
         // email: inputs.email || authUser.email,
-        // password: inputs.password || authUser.password,
+        password: inputs.password || authUser.password,
         type: inputs.type || authUser.type,
       };
 
       const token = localStorage.getItem("auth-token");
-      console.log("authUser:", updatedUser);
-      console.log(token)
-      console.log(`${BASE_URL}/users/${authUser.id}`)
 
-      await axios.put(`${BASE_URL}/users/${authUser.id}`, updatedUser, {
+      const response = await axios.put(`${BASE_URL}/users/${authUser.id}`, updatedUser, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,13 +36,14 @@ const useEditProfile = () => {
 
 
       const updatedData = response.data;
+
       localStorage.setItem("user-info", JSON.stringify(updatedData));
       setAuthUser(updatedData);
       setUserProfile(updatedData);
 
-      showToast("Success", "Profile updated successfully", "success");
-    } catch (error) {
-      showToast("Error", error.response?.data?.message || "Error updating profile", "error");
+      //showToast("Success", "Profile updated successfully", "success");
+    //} catch (error) {
+    //  showToast("Error", error.response?.data?.message || "Error updating profile", "error");
     } finally {
       setIsUpdating(false);
     }

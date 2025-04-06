@@ -47,7 +47,7 @@ const EditProfileForm = ({ selectedFile, setSelectedFile }) => {
       setSelectedFile(null);
       showToast("Success", "Profile updated successfully", "success"); // Mensagem de sucesso só é exibida aqui
     } catch (error) {
-      showToast("Error", error.message, "error"); // Mensagem de erro exibida em caso de falha
+      showToast("Error", error.response?.data?.message || "Error updating profile", "error"); // Mensagem de erro exibida em caso de falha
     }
   };
 
