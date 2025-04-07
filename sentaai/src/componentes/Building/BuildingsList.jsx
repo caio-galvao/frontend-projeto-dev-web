@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, Skeleton, Text, VStack } from "@chakra-ui/react";
-import ProfilePost from "./BuildingDisplayed";
+import BuildingDisplayed from "./BuildingDisplayed";
 import useGetManagerBuildigs from "../../hooks/useGetManagerBuildings";
 
 const BuildingsList = () => {
@@ -29,7 +29,7 @@ const BuildingsList = () => {
       {!isLoading && (
         <>
           {buildings.map((building) => (
-            <ProfilePost post={building} key={building.id} />
+            <BuildingDisplayed building={building} key={building.id} />
           ))}
         </>
       )}

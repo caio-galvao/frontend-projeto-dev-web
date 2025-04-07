@@ -16,41 +16,38 @@ import {
   import { MdDelete } from "react-icons/md";
   import useShowToast from "../../hooks/useShowToast";
   import useAuthStore from "../../store/authStore";
-  import usePostStore from "../../store/buildingStore";
+  import useBuildingStore from "../../store/buildingStore";
   import { BASE_URL } from "../../utils/request";
   
-  const ProfilePost = ({ post }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const authUser = useAuthStore((state) => state.user);
-    const showToast = useShowToast();
-    const [isDeleting, setIsDeleting] = useState(false);
-    const deletePost = usePostStore((state) => state.deletePost);
+const BuildingDisplayed = ({ building }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const authUser = useAuthStore((state) => state.user);
+  const showToast = useShowToast();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const deleteBuilding = useBuildingStore((state) => state.deleteBuilding);
   
-    const handleDeletePost = async () => {
-      if (!window.confirm("Are you sure you want to delete this building?")) return;
-      if (isDeleting) return;
-      setIsDeleting(true);
+  const handleDeleteBuilding = async () => {
+    if (!window.confirm("Tem certeza que quer remover o prédio?")) return;
+    if (isDeleting) return;
+    setIsDeleting(true);
+
+    try {
+      const response = await axios.delete(
+        `${BASE_URL}/building/${building.id}?user_id=${authUser.id}`
+      );
+      
+      deleteBuilding(building.id);
+      showToast("Success", response.data.message, "success");
+    } catch (error) {
+      showToast("Error", error.message, "error");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
   
-      try {
-        // Adjust the endpoint to match your building deletion route.
-        const response = await axios.delete(
-          `${BASE_URL}/building/${post.id}?user_id=${authUser.id}`
-        );
-        
-        // Update the store by removing the building.
-        deletePost(post.id);
-        showToast("Success", response.data.message, "success");
-      } catch (error) {
-        showToast("Error", error.message, "error");
-      } finally {
-        setIsDeleting(false);
-      }
-    };
-  
-    // Use a provided image URL or a placeholder built from the building name.
-    const imageUrl = post.imageURL || 
-      `sentaai\public\img\building_image.jpg`;
-  
+  const imageUrl = building.imageURL || `../../../public/img/building_image.jpg`;
+
+
     return (
       <>
         <GridItem
@@ -97,22 +94,22 @@ import {
               <Flex alignItems={"center"} justifyContent={"space-between"} mt={"15"}>
                 <Flex alignItems={"center"} gap={4}>
                   <Text fontWeight={"bold"} fontSize={16}>
-                    {post.name}
+                    {building.name}
                   </Text>
                   <Text fontSize={14} color="gray.500">
-                    Company ID: {post.company_id}
+                    Company ID: {building.company_id}
                   </Text>
                 </Flex>
   
                 {/* Show the delete button only if the auth user is allowed to delete this building */}
-                {authUser?.company_id === post.company_id && (
+                {authUser?.company_id === building.company_id && (
                   <Button
                     size={"sm"}
                     bg={"transparent"}
                     _hover={{ bg: "whiteAlpha.300", color: "red.600" }}
                     borderRadius={4}
                     p={1}
-                    onClick={handleDeletePost}
+                    onClick={handleDeleteBuilding}
                     isLoading={isDeleting}
                   >
                     <MdDelete size={20} cursor="pointer" />
@@ -126,4 +123,4 @@ import {
     );
   };
   
-  export default ProfilePost;  
+  export default BuildingDisplayed;  
