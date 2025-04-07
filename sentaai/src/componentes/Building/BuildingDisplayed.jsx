@@ -32,8 +32,14 @@ const BuildingDisplayed = ({ building }) => {
     setIsDeleting(true);
 
     try {
+      const token = localStorage.getItem("auth-token");
+
       const response = await axios.delete(
-        `${BASE_URL}/building/${building.id}?user_id=${authUser.id}`
+        `${BASE_URL}/building/${building.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       
       deleteBuilding(building.id);
@@ -45,7 +51,7 @@ const BuildingDisplayed = ({ building }) => {
     }
   };
   
-  const imageUrl = building.imageURL || `../../../public/img/building_image.jpg`;
+  const imageUrl = building.imageURL || `../../../img/building_image.jpg`;
 
 
     return (
@@ -102,7 +108,7 @@ const BuildingDisplayed = ({ building }) => {
                 </Flex>
   
                 {/* Show the delete button only if the auth user is allowed to delete this building */}
-                {authUser?.company_id === building.company_id && (
+                {(
                   <Button
                     size={"sm"}
                     bg={"transparent"}
