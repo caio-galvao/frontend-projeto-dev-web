@@ -23,7 +23,7 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 2. Acesse o diretório do projeto:
 
    ```bash
-   cd frontend-projeto-dev-web
+   cd frontend-projeto-dev-web/sentaai
    ```
 
 3. Instale as dependências:
@@ -36,19 +36,13 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 
 ## **Execução**
 
-1. Entre na raiz do projeto:
-
-   ```bash
-   cd sentaai
-   ```
-
-2. Execute o projeto em modo de desenvolvimento:
+1. Execute o projeto em modo de desenvolvimento:
 
    ```
    npm run dev
    ```
 
-3. Acesso o endereço:
+2. Acesso o endereço:
 
    ```
    http://localhost:8080
