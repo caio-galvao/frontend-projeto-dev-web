@@ -8,7 +8,8 @@ import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername
 
 const BuildingPage = () => {
   const { username } = useParams();
-  const { isLoading, userProfile } = useGetUserProfileByUsername(username);
+  //const { isLoading, userProfile } = useGetUserProfileByUsername(username);
+  const { isLoading, userProfile } = 'undefined';
 
   const userNotFound = !isLoading && !userProfile;
   //if (userNotFound) return <UserNotFound />;
@@ -41,7 +42,7 @@ const BuildingPage = () => {
       <Container maxW="container.lg">
         <Flex>
           <Box flex={2} py={10}>
-            <FeedPosts />
+            {/*<FeedPosts />*/}
           </Box>
         </Flex>
       </Container>
