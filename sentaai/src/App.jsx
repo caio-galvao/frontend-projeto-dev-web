@@ -3,6 +3,7 @@ import PageLayout from './Layouts/PageLayout/PageLayout'
 import AuthPage from './pages/AuthPage/AuthPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
 import BuildingPage from './pages/BuildingPage/BuildingPage'
+import RoomPage from './pages/RoomPage/RoomPage'
 import RoomView from './pages/Room/RoomView'
 
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/auth" element={!user ? <AuthPage /> : <Navigate to="/" />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/buildings" element={<BuildingPage />} />
+        <Route path="/rooms" element={<RoomPage />} />
         <Route path="/room/:id" element={<RoomView />} />
       </Routes>
     </PageLayout>
