@@ -1,14 +1,13 @@
 import { Box, Flex, Grid, Skeleton, Text, VStack } from "@chakra-ui/react";
-import RoomDisplayed from "./RoomDisplayed";
-import useGetManagerRooms from "../../hooks/useGetManagerRooms";
-import useGetManagerBuildigs from "../../hooks/useGetManagerBuildings";
+import CompanyDisplayed from "./CompanyDisplayed";
+import useGetManagerCompanies from "../../hooks/useGetManagerCompanies";
 
-const RoomsList = () => {
+const CompaniesList = () => {
 
-  const {isLoading, rooms }= useGetManagerRooms();
+  const {isLoading, companies }= useGetManagerCompanies();
 
-  const noRoomsFound = !isLoading && ((typeof rooms === "undefined") || (rooms.length === 0));
-  if(noRoomsFound) return <NoRoomsFound />
+  const noCompaniesFound = !isLoading && ((typeof companies === "undefined") || (companies.length === 0));
+  if(noCompaniesFound) return <NoCompaniesFound />
 
   return (
     <Grid
@@ -29,8 +28,8 @@ const RoomsList = () => {
 
       {!isLoading && (
         <>
-          {rooms.map((room) => (
-            <RoomDisplayed room={room} key={room.id} />
+          {companies.map((company) => (
+            <CompanyDisplayed company={company} key={company.id} />
           ))}
         </>
       )}
@@ -38,12 +37,12 @@ const RoomsList = () => {
   )
 }
 
-export default RoomsList;
+export default CompaniesList;
 
-const NoRoomsFound = () => {
+const NoCompaniesFound = () => {
   return (
     <Flex flexDir={'column'} textAlign={"center"} mx={"auto"}>
-      <Text fontSize={"2x1"}>No Rooms Found </Text>
+      <Text fontSize={"2x1"}>No Companies Found </Text>
     </Flex>
   )
 }
