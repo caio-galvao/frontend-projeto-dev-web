@@ -103,7 +103,7 @@ const RoomDisplayed = ({ room }) => {
                     {room.name}
                   </Text>
                   <Text fontSize={14} color="gray.500">
-                    Building ID: {building_id.company_id}
+                    Building ID: {room.building_id}
                   </Text>
                 </Flex>
   

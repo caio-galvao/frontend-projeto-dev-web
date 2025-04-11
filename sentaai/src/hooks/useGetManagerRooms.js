@@ -26,10 +26,10 @@ const useGetManagerRooms = () => {
           },
         });
     
-        getRooms(response.data)
+        setRooms(response.data)
       } catch (error) {
         showToast("Error", error.message, "error");
-        getRooms([]);
+        setRooms([]);
       } finally {
         setIsLoading(false);
       }
