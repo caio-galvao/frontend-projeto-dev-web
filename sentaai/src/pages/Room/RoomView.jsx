@@ -8,28 +8,44 @@ import Table from "../../componentes/Room/Table";
 import { useRoomStore } from "../../store/RoomStore";
 import { useSeatAvailability } from "../../hooks/useSetAvailability";
 import { parseConfig } from "../../utils/parseConfig";
+import { BASE_URL } from "../../utils/request";
 
 const RoomView = () => {
   const { id } = useParams();
   const { room, setRoom } = useRoomStore();
 
-  // Sempre inicialize `config` e `totalSeats` com valores padrão
-  const config = room?.config ? parseConfig(room.config) : [];
-  const totalSeats = config.reduce((sum, n) => sum + n, 0);
+console.log("Workspace config:", room?.workspace_config);
+
+const config = room?.workspace_config ? parseConfig(room.workspace_config) : [];
+const totalSeats = config.reduce((sum, n) => sum + n, 0);
+
+console.log("RoomView props:", { config, totalSeats });
 
   useEffect(() => {
-    axios
-      .get(`/room/${id}`)
-      .then((res) => {
+    const fetchRoom = async () => {
+      try {
+        const token = localStorage.getItem("auth-token");
+        const res = await axios.get(
+          `${BASE_URL}/room/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("Room data:", res.data);
+        console.log("Workspace config:", res.data.workspace_config);
         setRoom(res.data);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Erro ao carregar sala:", err);
-      });
+      }
+    };
+
+    fetchRoom();
   }, [id, setRoom]);
 
   // Chame o hook `useSeatAvailability` de forma consistente
   const { date, time, setDate, setTime, availability } = useSeatAvailability(id, totalSeats);
+  console.log("availability", availability);
 
   if (!room) {
     return <div className="p-6 text-center text-gray-500">Carregando sala...</div>;

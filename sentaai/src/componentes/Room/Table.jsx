@@ -1,6 +1,7 @@
 import Seat from "./Seat";
 
 const Table = ({ seats, availability, tableIndex, globalSeatOffset }) => (
+  console.log("Table props:", { seats, availability, tableIndex, globalSeatOffset }),
     <div className="bg-gray-100 p-4 rounded-lg shadow">
       <div className="grid grid-cols-2 gap-2">
         {Array.from({ length: seats }).map((_, idx) => {

@@ -7,24 +7,35 @@ export const useSeatAvailability = (roomId, totalSeats) => {
   const [availability, setAvailability] = useState({});
 
   useEffect(() => {
-    if (date && time) {
-      axios
-        .get(`/room/${roomId}/timestamp/`, {
-          params: { date, time },
-        })
-        .then((res) => {
+    if (!date || !time) return;
+
+    axios
+      .get(`/room/${roomId}/timestamp/`, {
+        params: { date, time },
+      })
+      .then((res) => {
+        const availabilityMap = {};
+
+        if (Array.isArray(res.data)) {
           const reserved = res.data.map((r) => r.workspace_id);
-          const map = {};
 
           for (let i = 0; i < totalSeats; i++) {
             const seatId = `S${i}`;
-            map[seatId] = reserved.includes(i) ? "unavailable" : "available";
+            availabilityMap[seatId] = reserved.includes(i) ? "unavailable" : "available";
           }
+        } else {
+          for (let i = 0; i < totalSeats; i++) {
+            const seatId = `S${i}`;
+            availabilityMap[seatId] = "available";
+          }
+        }
 
-          setAvailability(map);
-        })
-        .catch(() => setAvailability({}));
-    }
+        setAvailability(availabilityMap);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar disponibilidade:", error);
+        setAvailability({});
+      });
   }, [roomId, date, time, totalSeats]);
 
   return { date, time, setDate, setTime, availability };
