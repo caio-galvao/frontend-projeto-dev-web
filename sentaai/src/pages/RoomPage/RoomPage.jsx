@@ -1,12 +1,12 @@
 import { Container, Flex, Link, Skeleton, SkeletonCircle, Text, VStack, Box } from "@chakra-ui/react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 import ProfileHeader from "../../componentes/Profile/ProfileHeader";
-import BuildingsList from "../../componentes/Building/BuildingsList";
+import RoomsList from "../../componentes/Room/RoomsList";
 import FeedPosts from "../../componentes/FeedPosts/FeedPosts"
 import Footer from "../../componentes/Footer/Footer"
 import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername";
 
-const BuildingPage = () => {
+const RoomPage = () => {
   const { username } = useParams();
   //const { isLoading, userProfile } = useGetUserProfileByUsername(username);
   const { isLoading, userProfile } = 'undefined';
@@ -36,7 +36,7 @@ const BuildingPage = () => {
           borderColor="whiteAlpha.300"
           direction="column"
         >
-          <BuildingsList />
+          <RoomsList />
         </Flex>
       </Container>
       <Container maxW="container.lg">
@@ -51,7 +51,7 @@ const BuildingPage = () => {
   );
 };
 
-export default BuildingPage;
+export default RoomPage;
 
 const BuildingHeaderSkeleton = () => {
   return (
