@@ -25,6 +25,8 @@ const useGetManagerCompanies = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+
+        console.log(response.data)
     
         setCompanies(response.data)
       } catch (error) {
